@@ -1,8 +1,12 @@
+<?php
+header('Content-Type: text/html; charset=UTF-8');
+
+?>
 <!DOCTYPE html>
-<html>
+<html lang="es" dir="ltr">
 <head>
     <title>Taller PreParcial | Punto A</title>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="utf-8">
     <!-- Estilos -->
     <link href="../css/estilos.css" rel="stylesheet">
     <!--<link href="../css/estilos.css" rel="stylesheet">
@@ -57,8 +61,13 @@ if (isset($_POST['solicitud'])){
 
 if (isset($_POST['cadena'])){
     $cadena = $_POST['cadena'];
-    
-    $prueba =str_split($cadena);
+     
+    //echo $cadena . "<br>";
+    //$prueba = str_split($cadena);
+    for ($position = 0, $textLen = mb_strlen($cadena,'UTF-8'); $position < $textLen; $position++){
+         $prueba[] = mb_substr ($cadena,$position,1,'UTF-8');
+    }
+
     $original = array();
     $respuesta = array();
     $encriptada = array();
@@ -76,14 +85,14 @@ if (isset($_POST['cadena'])){
 <a href="../index.php"><img src="../img/home.png" width="60"></a>
 <div style="margin-left: 500px; margin-top: -20px">
     <form action="../encripcion.php" enctype="multipart/form-data" method="post" id="encriptar">
-        <div class="group">      
+        <div class="group">
             <input type="number" id="solicitud" name="solicitud" required min="0" max="36">
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Entrada</label>
         </div>
         <div class="group">      
-            <input type="text" pattern="[a-z0-9]+" title="Valores unicamente alfanumericos" id="cadena" name="cadena" required>
+            <input type="text" pattern="[a-z0-9ñ]+" title="Valores unicamente alfanumericos" id="cadena" name="cadena" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Cadena</label>

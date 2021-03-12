@@ -58,7 +58,10 @@ if (isset($_POST['solicitudd'])){
 if (isset($_POST['cadenad'])){
     $cadena = $_POST['cadenad'];
     
-    $prueba =str_split($cadena);
+    //$prueba =str_split($cadena);
+    for ($position = 0, $textLen = mb_strlen($cadena,'UTF-8'); $position < $textLen; $position++){
+         $prueba[] = mb_substr ($cadena,$position,1,'UTF-8');
+    }
     $original = array();
     $respuesta = array();
     $encriptada = array();
@@ -84,7 +87,7 @@ if (isset($_POST['cadenad'])){
             <label>Entrada</label>
         </div>
         <div class="group">      
-            <input type="text" pattern="[a-z0-9]+" title="Valores unicamente alfanumericos" id="cadenad" name="cadenad" required>
+            <input type="text" pattern="[a-z0-9ñ]+" title="Valores unicamente alfanumericos" id="cadenad" name="cadenad" required>
             <span class="highlight"></span>
             <span class="bar"></span>
             <label>Cadena</label>
